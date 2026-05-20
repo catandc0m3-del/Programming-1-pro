@@ -38,7 +38,7 @@ def register_patient():
             if option == "yes" or option == "no":
                 break
             else:
-                print("Invalid input. Please enter 'Yes' or 'No'.")
+                print("Invalid input. Please enter 'yes' or 'no'.")
         if option == "no":
             print("Thank you for registering the patient.")
             break
@@ -135,10 +135,10 @@ while True:
     print("1. Register Patient")
     print("2. Book Appointment")
     print("3. Calculate Bill")
-    print("4. Exit")
-    print("========================================")
+    print("4. Assign Triage Room")
+    print("5. Exit")
 
-    choice = input("Enter your choice (1-4): ")
+    choice = input("Enter your choice (1-5): ")
 
     if choice == "1":
         register_patient()
@@ -147,7 +147,51 @@ while True:
     elif choice == "3":
         calculate_bill()
     elif choice == "4":
-        print("Goodbye!")
+        assign_triage_room()
+    elif choice == "5":
         break
     else:
         print("Invalid choice. Please enter 1, 2, 3, or 4.")
+    
+def assign_triage_room():
+    while True:
+        try:
+            severity_input = input("Enter severity of condition (1-10): ").strip()
+
+            # Check if input is a whole number
+            if not severity_input.isdigit():
+                print("Error: Severity must be a whole number.")
+                continue
+
+            severity = int(severity_input)
+
+            # Exit option
+            if severity == 5:
+                print("Exiting triage menu...")
+                break
+
+            # Validate range
+            if severity < 1 or severity > 10:
+                print("Error: Severity must be between 1 and 10 (or 5 to exit).")
+                continue
+
+            # Assign room based on severity
+            if 1 <= severity <= 4:
+                room = "Waiting Room"
+            elif 6 <= severity <= 7:   # shifted since 5 is now exit
+                room = "Room 1"
+            else:  # severity 8–10
+                room = "Room 2"
+
+            print("\n--- Triage Summary ---")
+            print(f"Severity Level: {severity}")
+            print(f"Assigned Room: {room}\n")
+            break
+
+        except ValueError:
+            print("Error: Invalid input. Please enter a number.")
+
+assign_triage_room()
+
+
+

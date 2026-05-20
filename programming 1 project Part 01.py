@@ -6,7 +6,7 @@ while True:
         else:
             break   
 
-    
+    identification = None
     while True:
         try:
             age = int(input("Enter patient age: "))
@@ -18,13 +18,15 @@ while True:
             print("Invalid input. Please enter a number for age.")
 
     
-    identification = input("Enter patient ID: ")
+        identification = input("Enter patient ID: ")
+        if identification.strip() == "":
+            print("Please enter Patient ID:   ")
 
     
     print(f"Patient: {name}, Age: {age}, ID: {identification} - Your registration is confirmed!")
 
     
-    option = input("Do you want to register another patient? (Yes/No): ")
-    if option == "No":
+    option = input("Do you want to register another patient? (Yes/No): ").lower()
+    if option == "no":
         print("Thank you for registering the patient")
         break

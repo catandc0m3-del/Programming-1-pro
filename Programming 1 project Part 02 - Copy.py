@@ -24,8 +24,8 @@ while True:
     print(f"Patient: {name}, Age: {age}, ID: {identification} - Your registration is confirmed!")
 
     
-    option = input("Do you want to register another patient? (Yes/No): ")
-    if option == "No":
+    option = input("Do you want to register another patient? (Yes/No): ").lower()
+    if option == "no":
         print("Thank you for registering the patient")
         break
 
